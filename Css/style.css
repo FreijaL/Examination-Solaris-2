@@ -44,13 +44,17 @@ header input {
 }
 
 .input-search-results {
-    display: none;
     list-style: none;
     cursor: pointer;
 }
 
-.input-search-results li {
+.notShowing {
+    display:none;
     margin: 8px;
+}
+
+.showing {
+    display: block;
 }
 
 .input-search-results li:hover {
