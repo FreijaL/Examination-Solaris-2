@@ -31,6 +31,7 @@ header input {
     border-bottom: 1px solid white;
     color: white;
     font-size: 18px;
+    overflow: hidden;
 }
 
 .input-search::placeholder {
@@ -40,6 +41,20 @@ header input {
 .input-search:focus {
     background-color: transparent;
     color: white;
+}
+
+.input-search-results {
+    display: none;
+    list-style: none;
+    cursor: pointer;
+}
+
+.input-search-results li {
+    margin: 8px;
+}
+
+.input-search-results li:hover {
+    color: #FFD029;
 }
 
 .input-btn {
@@ -198,16 +213,19 @@ main {
     width: 70%;
     height: 80%;
     overflow: auto;
-    background-color: #152a73;
+    background-color: #0C1B51;
     font-size: 20px;
+    border-radius: 100px;
+    box-shadow: 0 0 50px 0 white;
 }
 
 .close-modal {
     width: 5rem;
     height: 5rem;
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 4rem;
+    left: 5rem;
+    font-size: 30px;
 }
 
 .planet-text-container {
@@ -224,6 +242,7 @@ main {
 
 .planet-name-latin {
     margin-bottom: 2rem;
+    color: #FFD029;
 }
 
 .planet-info-container {
@@ -235,6 +254,13 @@ main {
     padding-bottom: 5rem;
 }
 
+article h4 {
+    color: #FFD029;
+    text-align: center;
+}
+
 .planet-info {
     margin-top: 1rem;
+    width: auto;
+    text-align: center;
 }
