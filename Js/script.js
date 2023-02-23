@@ -1,42 +1,42 @@
 const URL = 'https://majazocom.github.io/Data/solaris.json';
-const inputBtn = document.querySelector('.input-btn');
+//const inputBtn = document.querySelector('.input-btn');
 let planetsArray = [];
-
+const inputField = document.querySelector('.input-search');
+const ulContainer = document.querySelector('.input-search-results');
+let planetEl;
 
 
 // Hämtar data från API
 async function getApi() {
     let response = await fetch(URL);
-    let data = await response.json();
-    return data;
+    planetsArray = await response.json();
+    renderOut(planetsArray)
+    return planetsArray;
 };
 getApi();
-
 
 
 // Gör om datan till enskilda planeter och skicka vidare informationen till de andra funktionerna
 async function getPlanets() {
     let planets = await getApi();
 
-    planets.map(function(planet) {
+    planetsArray.map(function(planet) {
         renderPlanets(planet);
-        renderPlanetsLi(planet);
-        planetsArray.push(planet);
+        //renderPlanetsLi(planet);
+        //planetsArray.push(planet);
         return planet;
     });
 };
 getPlanets();
 
 
-
 // Renderar ut planeterna i UI
 function renderPlanets(planet) {
     const mainEl = document.querySelector('.planets-container');
-    let planetEl = document.createElement('article');
+    const planetEl = document.createElement('article');
     planetEl.classList.add('planet', `planet-${planet.id}`, `${planet.id}`);
     mainEl.appendChild(planetEl);
 
-    
     // Vid klick på planeterna öppnas Modalen
     planetEl.addEventListener('click', () => {
         openModal(planet);
@@ -45,24 +45,51 @@ function renderPlanets(planet) {
 };
 
 
-
-// Skapar även li-element till listan i sökfunktionen
-function renderPlanetsLi(planet) {
-
-    const resultsUl = document.querySelector('.input-search-results');
-    let resultsLi = document.createElement('li');
-    resultsLi.classList.add('notShowing', `${planet.id}`);
-    resultsLi.innerHTML = planet.name;
-    resultsUl.appendChild(resultsLi);
-
-
-    // Öppnar modalen när användaren klickar på sökresultatet
-    resultsLi.addEventListener('click', () => {
-        openModal(planet);
-    }) 
+// Renderar ut planerna i söklistan
+function renderOut(planets) {
+    ulContainer.innerHTML = '';
+    planets.forEach(planet => {
+        planetEl = document.createElement('li');
+        planetEl.classList.add('notShowing', `${planet.id}`);
+        planetEl.innerHTML = `<p>${planet.name}</p>`;
+        planetEl.addEventListener('click', function() {
+            //console.log(planet);
+            openModal(planet);
+        })
+        ulContainer.appendChild(planetEl);
+    })
 };
 
-console.log(planetsArray);
+
+
+// Jämför input-fältets värde med arrayens innehåll
+inputField.addEventListener('keyup', function() {
+    let input = inputField.value;
+    //console.log(input);
+    let matchedPlanet = [];
+    // gå igenom listan med planet och kollar om något name inkluderar inputen
+    planetsArray.forEach(planet => {
+        // om det inkluderar inputen skall vi lägga in planeten i matchedPlanet
+        if (planet.name.toLowerCase().includes(input.toLowerCase())){
+            planetEl.classList.add('showing');
+            matchedPlanet.push(planet);
+
+            console.log(matchedPlanet);
+        }
+    });
+    if (matchedPlanet.length > 0) {
+        planetEl.classList.add('showing');
+        renderOut(matchedPlanet);
+        matchedPlanet.forEach(planet => {
+            planetEl.classList.remove('notShowing');
+            planetEl.classList.add('showing');
+        })
+    } else {
+        // inga matchningar
+        ulContainer.innerHTML = 'Inga matchningar hittades';
+    };
+});
+
 
 
 
@@ -72,7 +99,6 @@ function openModal(planet) {
     const closeModal = document.querySelector('.close-modal');
 
     modal.style.display = 'flex';
-    //console.log('hjehje');
     document.querySelector('.planet-name').innerHTML = planet.name;
     document.querySelector('.planet-name-latin').innerHTML = planet.latinName;
     document.querySelector('.planet-text').innerHTML = planet.desc;
@@ -95,66 +121,13 @@ function openModal(planet) {
 };
 
 
-
-// Funktion som öppnas när användaren sökt på något som inte matchar
-function openWrongInputModal() {
-
-}
-
-
-//Vid klick på search-knappen körs funktionen compareInput
-inputBtn.addEventListener('click', () => {
-    compareInput();
+// EventListener på pilarna för att byta modal/planet
+const arrowLeft = document.querySelector('.arrow-left');
+const arrowRight = document.querySelector('.arrow-right');
+arrowLeft.addEventListener('click', () => {
+    let openModal = openModal(planet).findIndex
 })
 
 
 
 
-// Funktion som jämför input-value med planetArray + lowerCase + upperCase
-// function compareInput(planet) {
-//     let inputValue = document.querySelector('.input-search').value;
-//     let arrayToLowerCase = planetsArray.map(planet => (planet.name).toLowerCase());
-//     let arrayToUpperCase = planetsArray.map(planet => (planet.name).toUpperCase());
-//     console.log(arrayToUpperCase)
-//     if (planetsArray.includes(inputValue) || arrayToLowerCase.includes(inputValue) || arrayToUpperCase.includes(inputValue)){
-        
-//         // osäker på om de lila ska ligga här eller inte
-//         renderPlanetsLi();
-//         // resultsLi.classList.remove('notShowing');
-//         // resultsLi.classList.add('showing');
-//         console.log(inputValue); 
-//     } else {
-//         console.log('error');
-//     };
-// };
- 
-
-//Eventlyssnare som ska reagera på tangent-ner och sedan jämföra med compareInput
-let inputField = document.querySelector('.input-search');
-
-inputField.addEventListener('keydown', (e) => {
-    const searchInput = e.target.value;
-    const filteredPlanets = planetsArray.filter((planet) => {
-        return (
-            planet.name.toLowerCase().includes(searchInput) ||
-            planet.name.toUpperCase().includes(searchInput)
-        );
-    })
-    renderPlanetsLi(filteredPlanets);
-});
-
-
-
-// denna fungerar vid knapptryck, men ger inte rätt i consolen.
-// let searchInput = document.querySelector('.input-search');
-
-// searchInput.addEventListener('keyup', (e) => {
-//     let searchString = e.target.value;
-//     let filteredPlanets = planetsArray.filter( (planet) => {
-//         return (
-//             planet.includes(searchString)
-//         );
-//     });
-//     console.log(filteredPlanets)
-//     //renderPlanetsLi(filteredPlanets);
-// });
