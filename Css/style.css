@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@700&display=swap');
 
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -98,13 +97,46 @@ main {
     text-align: center;
     display: none;
     position: relative;
-    transform: scale(1, 1.5);
+    transform: scale(1, 1.2);
+}
+
+.planet-h2-0 {
+    color: #FFD029;
+}
+.planet-h2-1 {
+    color: #ababab;
+}
+.planet-h2-2 {
+    color: #ff8282;
+}
+.planet-h2-3 {
+    color: #3ea2ff;
+}
+.planet-h2-4 {
+    color: #fe3c3c;
+}
+.planet-h2-5 {
+    color: #ff7b00;
+}
+.planet-h2-6 {
+    color: #FFD029;
+}
+.planet-h2-7 {
+    color: #bdcffd;
+}
+.planet-h2-8 {
+    color: #5f90bd;
 }
 
 .planet {
     border-radius: 50rem;
     animation-name: shine;
-    animation-duration: 5s;
+    animation-duration: 4s;
+}
+
+@keyframes shine {
+    from {opacity: .1; scale: .1; box-shadow: none;}
+    to {opacity: 1; scale: 1.01; box-shadow: 0px 0px 50px black;}
 }
 
 .planet-0 {
@@ -116,66 +148,61 @@ main {
     border-radius: 50%;
 }
 
-@keyframes shine {
-    from {opacity: .1; scale: .1;}
-    to {opacity: 1; scale: 1.01;}
-}
-
 .planet-1 {
     width: 18px;
     height: 18px;
     background-image: linear-gradient(to left, #3b3b3b, #ababab);
-    box-shadow: inset 0px 0px 10px black, 0 0 10px 0 #cecece;
+    box-shadow: 0 0 10px 0 #cecece;
 }
 
 .planet-2 {
     width: 28px;
     height: 28px;
     background-image: linear-gradient(to left, #4e3535, #ff8282);
-    box-shadow: inset 0px 0px 10px black, 0px 0px 10px rgb(255, 236, 167);
+    box-shadow: 0px 0px 10px rgb(255, 236, 167);
 
 }
 
 .planet-3 {
     width: 32px;
     height: 32px;
-    background-image: linear-gradient(to left, #143551, #3ea2ff);
-    box-shadow: inset 0px 0px 10px black, 0px 0px 10px #50aaff;
+    background-image: linear-gradient(to left, #0d2439, #3ea2ff);
+    box-shadow: 0px 0px 10px #50aaff;
 }
 
 .planet-4 {
     width: 18px;
     height: 18px;
-    background-image: linear-gradient(to left, #902525 15%, #fe3c3c);
-    box-shadow: inset 0px 0px 10px black, 0px 0px 10px #ff7d7d;
+    background-image: linear-gradient(to left, #4f1010 15%, #fe3c3c);
+    box-shadow: 0px 0px 10px #ff7d7d;
 }
 
 .planet-5 {
     width: 188px;
     height: 188px;
-    background-image: linear-gradient(to left, #3b230c 20%, #ff7b00);
-    box-shadow: inset 0px 0px 30px black, 0px 0px 20px #ffbd80;
+    background-image: linear-gradient(to left, #241506 20%, #ff7b00);
+    box-shadow: 0px 0px 20px #ffbd80;
 }
 
 .planet-6 {
     width: 145px;
     height: 145px;
-    background-image: linear-gradient(to left, #3a2f07 25%, #ffc800);
-    box-shadow: inset 0px 0px 30px black, 0px 0px 20px #ffdf9f;
+    background-image: linear-gradient(to left, #2b2304 25%, #ffc800);
+    box-shadow: 0px 0px 20px #ffdf9f;
 }
 
 .planet-7 {
     width: 65px;
     height: 65px;
-    background-image: linear-gradient(to left, #282f3f 30%, #bdcffd);
-    box-shadow: inset 0px 0px 15px black, 0px 0px 15px #dee8ff;
+    background-image: linear-gradient(to left, #1c2230 30%, #bdcffd);
+    box-shadow: 0px 0px 15px #dee8ff;
 }
 
 .planet-8 {
     width: 65px;
     height: 65px;
-    background-image: linear-gradient(to left, #152535 35%, #5f90bd);
-    box-shadow: inset 0px 0px 15px black, 0px 0px 15px #a2c5e6;
+    background-image: linear-gradient(to left, #101e2c 35%, #5f90bd);
+    box-shadow: 0px 0px 15px #a2c5e6;
 }
 
 .planet:hover {
@@ -184,7 +211,7 @@ main {
 
 .planet:hover .planet-name-h2 {
     display: block;
-    top: -100px;
+    top: -80px;
 }
 
 .planet-0:hover {
@@ -214,7 +241,6 @@ main {
 .planet-8:hover {
     scale: 1.2;
 }
-
 
 .modal {
     display: none;
@@ -252,6 +278,13 @@ main {
     position: absolute;
     top: 5%;
     left: -45rem;
+    animation-name: modal-shine;
+    animation-duration: 3s;
+}
+
+@keyframes modal-shine {
+    from {opacity: .1;}
+    to {opacity: 1;}
 }
 
 .modal-img-0 {
