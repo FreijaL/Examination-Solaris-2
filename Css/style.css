@@ -9,7 +9,8 @@
 body {
     width: 100vW;
     height: 100vh;
-    background-image: linear-gradient(to right, #152a73, rgb(1, 2, 10));
+    background-color: black;
+    /* background-image: linear-gradient(to right, #152a73, rgb(1, 2, 10)); */
     color: white;
     font-family: 'Cardo', serif;
 }
@@ -63,24 +64,6 @@ header input {
     color: #FFD029;
 }
 
-/* .input-btn {
-    border: 1px solid black;
-    padding: .5rem;
-    border-radius: 10px;
-    background-color: #FFD029;
-    opacity: .9;
-    color: black;
-    font-size: 11px;
-}
-
-.input-btn:hover {
-    opacity: .8;
-}
-
-.input-btn:active {
-    background-color: #947917;
-} */
-
 .header-text {
     text-align: end;
 }
@@ -95,7 +78,7 @@ main {
     margin-top: ;
     overflow: visible;
     position: absolute;
-    top: 20rem;
+    top: 10rem;
     left: 0;
     right: 0;
     bottom: 0;
@@ -110,79 +93,98 @@ main {
 
 
 /* --- STYLING PLANETERNA --- */
+.planet-name-h2 {
+    font-size: 2em;
+    text-align: center;
+    display: none;
+    position: relative;
+    transform: scale(1, 1.5);
+}
+
 .planet {
     border-radius: 50rem;
+    animation-name: shine;
+    animation-duration: 5s;
 }
 
 .planet-0 {
     width: 60rem;
     height: 60rem;
     margin-left: -55rem;
-
-    background: #FFD029;
-    box-shadow: 0px 0px 1000px 80px rgb(255, 232, 83);
+    background-color: #FFD029;
+    box-shadow: 0px 0px 1000px 80px rgb(255, 230, 65);
     border-radius: 50%;
+}
+
+@keyframes shine {
+    from {opacity: .1; scale: .1;}
+    to {opacity: 1; scale: 1.01;}
 }
 
 .planet-1 {
     width: 18px;
     height: 18px;
     background-image: linear-gradient(to left, #3b3b3b, #ababab);
-    box-shadow: 0 0 10px 0 #cecece;
+    box-shadow: inset 0px 0px 10px black, 0 0 10px 0 #cecece;
 }
 
 .planet-2 {
     width: 28px;
     height: 28px;
-    background-image: linear-gradient(to left, #4e3535, #ff8d8d);
-    box-shadow: 0px 0px 10px rgb(255, 236, 167);
+    background-image: linear-gradient(to left, #4e3535, #ff8282);
+    box-shadow: inset 0px 0px 10px black, 0px 0px 10px rgb(255, 236, 167);
 
 }
 
 .planet-3 {
     width: 32px;
     height: 32px;
-    background-image: linear-gradient(to left, #143551, #3c97ec);
-    box-shadow: 0px 0px 10px #50aaff;
+    background-image: linear-gradient(to left, #143551, #3ea2ff);
+    box-shadow: inset 0px 0px 10px black, 0px 0px 10px #50aaff;
 }
 
 .planet-4 {
     width: 18px;
     height: 18px;
-    background-image: linear-gradient(to left, #611e1e 15%, #fe3c3c);
-    box-shadow: 0px 0px 10px #ff7d7d;
+    background-image: linear-gradient(to left, #902525 15%, #fe3c3c);
+    box-shadow: inset 0px 0px 10px black, 0px 0px 10px #ff7d7d;
 }
 
 .planet-5 {
     width: 188px;
     height: 188px;
-    background-image: linear-gradient(to left, #3b230c 20%, #ff8a1d);
-    box-shadow: 0px 0px 20px #ffbd80;
+    background-image: linear-gradient(to left, #3b230c 20%, #ff7b00);
+    box-shadow: inset 0px 0px 30px black, 0px 0px 20px #ffbd80;
 }
 
 .planet-6 {
     width: 145px;
     height: 145px;
-    background-image: linear-gradient(to left, #3a2f07 25%, #ffd437);
-    box-shadow: 0px 0px 20px #ffdf9f;
+    background-image: linear-gradient(to left, #3a2f07 25%, #ffc800);
+    box-shadow: inset 0px 0px 30px black, 0px 0px 20px #ffdf9f;
 }
 
 .planet-7 {
     width: 65px;
     height: 65px;
-    background-image: linear-gradient(to left, #282f3f 30%, #cedcff);
-    box-shadow: 0px 0px 15px #dee8ff;
+    background-image: linear-gradient(to left, #282f3f 30%, #bdcffd);
+    box-shadow: inset 0px 0px 15px black, 0px 0px 15px #dee8ff;
 }
 
 .planet-8 {
     width: 65px;
     height: 65px;
-    background-image: linear-gradient(to left, #152535 35%, #88bef2);
-    box-shadow: 0px 0px 15px #a2c5e6;
+    background-image: linear-gradient(to left, #152535 35%, #5f90bd);
+    box-shadow: inset 0px 0px 15px black, 0px 0px 15px #a2c5e6;
 }
 
 .planet:hover {
     cursor: pointer;
+}
+
+.planet:hover .planet-name-h2 {
+    display: block;
+    top: -100px;
 }
 
 .planet-0:hover {
@@ -220,28 +222,64 @@ main {
     align-items: center;
     position: fixed;
     z-index: 1;
-    left: 15%;
-    top: 10%;
-    width: 70%;
-    height: 80%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     overflow: auto;
-    background-color: #0C1B51;
+    background-color: #04050e;
     font-size: 20px;
-    border-radius: 100px;
-    box-shadow: 0 0 50px 0 white;
+    box-shadow: inset 0 0 40px black;
 }
 
 .close-modal {
     width: 5rem;
     height: 5rem;
     position: absolute;
-    top: 4rem;
-    left: 5rem;
+    top: 3rem;
+    left: 3rem;
     font-size: 30px;
 }
 
 .close-modal:hover {
     cursor: pointer;
+}
+
+.modal-img {
+    width: 60rem;
+    height: 60rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 5%;
+    left: -45rem;
+}
+
+.modal-img-0 {
+    background-color: #FFD029;
+}
+.modal-img-1 {
+    background-color: #ababab;
+}
+.modal-img-2 {
+    background-color: #ff8282;
+}
+.modal-img-3 {
+    background-color: #3ea2ff;
+}
+.modal-img-4 {
+    background-color: #fe3c3c;
+}
+.modal-img-5 {
+    background-color: #ff7b00;
+}
+.modal-img-6 {
+    background-color: #ffc800;
+}
+.modal-img-7 {
+    background-color: #bdcffd;
+}
+.modal-img-8 {
+    background-color: #5f90bd;
 }
 
 .planet-text-container {
@@ -252,7 +290,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
     border-bottom: 1px solid white;
 }
 
@@ -281,12 +319,19 @@ article h4 {
     text-align: center;
 }
 
+.planet-info-moons {
+    width: 50%;
+    border-top: 1px solid white;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+}
+
 .arrows {
     width: 98%;
     display: flex;
     justify-content: space-between;
     position: absolute;
-    margin-top: 45%;
+    margin-top: 25rem;
     font-size: 40px;
 }
 
@@ -294,6 +339,10 @@ article h4 {
     width: 5rem;
     height: 5rem;
     text-align: center;
+}
+
+.arrow-left {
+    color: black;
 }
 
 .arrow:hover {
