@@ -390,4 +390,5 @@ footer {
     align-items: center;
     justify-content: center;
     position: static;
+    bottom: 0;
 }
