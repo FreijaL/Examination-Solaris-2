@@ -1,7 +1,3 @@
-//   Hej Maja! Jag vet att det inte går att klicka på alla sökresultat för att solen skymmer dem.
-//   Lyckades inte lista ut hur man löste de i tid tyvärr. Men alla sökreslutat är klickbara när 
-//   dem kommer upp där solens strålar slutar..
-
 const URL = 'https://majazocom.github.io/Data/solaris.json';
 const inputField = document.querySelector('.input-search');
 const ulContainer = document.querySelector('.input-search-results');
@@ -79,7 +75,7 @@ inputField.addEventListener('keyup', function() {
         renderOutMatch(matchedPlanet);
     } else {
         // Annars finns inga matchningar och error-meddelande visas
-        ulContainer.innerHTML = 'Inga planet hittades';
+        ulContainer.innerHTML = 'Ingen planet hittades';
     };
 });
 
